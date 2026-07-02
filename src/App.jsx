@@ -44,8 +44,10 @@ const PROJECTS = [
         description: "A website for tracking elementary school learning outcomes. This website allows users to monitor student grades, create exams, upload a question bank, and upload e-books.",
         tags: ["CSS", "React","express","OOP","MYSQL"],
         media: [
-            { type: "image", src: "/projects/nexus-1.png" },
-            { type: "image", src: "/projects/nexus-2.png" },
+            { type: "image", src: "./Capaian/capai1.png" },
+            { type: "image", src: "./Capaian/capai2.png" },
+            { type: "image", src: "./Capaian/capai3.png" },
+            { type: "image", src: "./Capaian/capai4.png" }
         ],
     },
     {
@@ -54,8 +56,10 @@ const PROJECTS = [
         description: "A website for monitoring temperature, weather, wind direction, and wind speed that connects to IoT devices in real time using MQTT, an ExpressJS for backend, and MySQL as the database",
         tags: ["Flutter","express","OOP","IOT","MQTT","MYSQL"],
         media: [
-            { type: "image", src: "/projects/nexus-1.png" },
-            { type: "image", src: "/projects/nexus-2.png" },
+            { type: "image", src: "./weather/img.png" },
+            { type: "image", src: "./weather/img_1.png" },
+            { type: "image", src: "./weather/img_2.png" },
+            { type: "video", src: "./weather/video_iot.mp4" }
         ],
     },
 ];
