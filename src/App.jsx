@@ -12,6 +12,7 @@ import {
     Mail,
     MapPin,
 } from "lucide-react";
+import React, { useEffect, useRef } from "react";
 
 const SKILLS = [
     { icon: Code2, title: "Frontend Engineering", description: "React, TypeScript and design systems built to scale across teams.", tags: ["React", "TS", "Tailwind"] },
