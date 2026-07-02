@@ -1,23 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function ProjectModal({ project, onClose }) {
     const [activeIndex, setActiveIndex] = useState(0);
-    const images = project?.images ?? [];
+    const media = project?.media ?? [];
+    const videoRefs = useRef([]);
 
     // Reset ke slide pertama tiap kali project berganti
     useEffect(() => {
         setActiveIndex(0);
     }, [project]);
 
-    // Auto-slide, hanya jalan kalau gambar lebih dari satu
+    // Auto-slide, hanya jalan kalau media lebih dari satu
     useEffect(() => {
-        if (images.length <= 1) return;
+        if (media.length <= 1) return;
         const timer = setInterval(() => {
-            setActiveIndex((i) => (i + 1) % images.length);
-        }, 3500);
+            setActiveIndex((i) => (i + 1) % media.length);
+        }, 6000);
         return () => clearInterval(timer);
-    }, [images.length]);
+    }, [media.length]);
+
+    // Play hanya video yang aktif, pause sisanya (gambar tidak butuh play/pause)
+    useEffect(() => {
+        videoRefs.current.forEach((videoEl, i) => {
+            if (!videoEl) return;
+            if (i === activeIndex) {
+                videoEl.currentTime = 0;
+                videoEl.play().catch(() => {
+                    // autoplay bisa ditolak browser kalau belum ada interaksi user sama sekali,
+                    // diamkan saja — video tetap akan play begitu user berinteraksi
+                });
+            } else {
+                videoEl.pause();
+            }
+        });
+    }, [activeIndex, project]);
 
     // Tutup pakai ESC + kunci scroll body selama modal terbuka
     useEffect(() => {
@@ -44,7 +61,7 @@ export default function ProjectModal({ project, onClose }) {
 
             <div
                 onClick={(e) => e.stopPropagation()}
-                className="relative z-10 grid w-full max-w-4xl grid-cols-1 overflow-hidden rounded-2xl border border-[#232b45] bg-[#0d1120] shadow-[0_0_60px_rgba(110,231,249,0.12)] animate-modal-in md:grid-cols-2"
+                className="relative z-10 grid w-full max-w-5xl max-h-[85vh] grid-cols-1 overflow-x-hidden overflow-y-auto rounded-2xl border border-[#232b45] bg-[#0d1120] shadow-[0_0_60px_rgba(110,231,249,0.12)] animate-modal-in md:grid-cols-2"
             >
                 <button
                     onClick={onClose}
@@ -54,49 +71,63 @@ export default function ProjectModal({ project, onClose }) {
                     <X size={18} />
                 </button>
 
-                {/* kiri: carousel gambar */}
-                <div className="relative h-64 bg-[#141a2e] md:h-full">
-                    {images.length > 0 ? (
+                {/* kiri: carousel video/gambar */}
+                <div className="relative h-64 overflow-hidden bg-[#141a2e] md:h-full">
+                    {media.length > 0 ? (
                         <>
                             <div
                                 className="flex h-full transition-transform duration-700 ease-out"
                                 style={{ transform: `translateX(-${activeIndex * 100}%)` }}
                             >
-                                {images.map((src, i) => (
-                                    <img
-                                        key={src + i}
-                                        src={src}
-                                        alt={`${project.title} screenshot ${i + 1}`}
-                                        className="h-full w-full flex-shrink-0 object-cover"
-                                    />
-                                ))}
+                                {media.map((item, i) =>
+                                    item.type === "video" ? (
+                                        <video
+                                            key={item.src + i}
+                                            ref={(el) => (videoRefs.current[i] = el)}
+                                            src={item.src}
+                                            className="h-full w-full flex-shrink-0 object-cover"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            preload="metadata"
+                                        />
+                                    ) : (
+                                        <img
+                                            key={item.src + i}
+                                            src={item.src}
+                                            alt={item.alt ?? `${project.title} preview ${i + 1}`}
+                                            className="h-full w-full flex-shrink-0 object-cover"
+                                        />
+                                    )
+                                )}
                             </div>
 
-                            {images.length > 1 && (
+                            {media.length > 1 && (
                                 <>
                                     <button
                                         onClick={() =>
-                                            setActiveIndex((i) => (i - 1 + images.length) % images.length)
+                                            setActiveIndex((i) => (i - 1 + media.length) % media.length)
                                         }
                                         className="absolute left-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#05070f]/60 text-[#e8eaf6] transition-colors hover:bg-[#05070f]/90"
-                                        aria-label="Previous image"
+                                        aria-label="Previous item"
                                     >
                                         <ChevronLeft size={18} />
                                     </button>
                                     <button
-                                        onClick={() => setActiveIndex((i) => (i + 1) % images.length)}
+                                        onClick={() => setActiveIndex((i) => (i + 1) % media.length)}
                                         className="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-[#05070f]/60 text-[#e8eaf6] transition-colors hover:bg-[#05070f]/90"
-                                        aria-label="Next image"
+                                        aria-label="Next item"
                                     >
                                         <ChevronRight size={18} />
                                     </button>
 
                                     <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
-                                        {images.map((_, i) => (
+                                        {media.map((_, i) => (
                                             <button
                                                 key={i}
                                                 onClick={() => setActiveIndex(i)}
-                                                aria-label={`Go to image ${i + 1}`}
+                                                aria-label={`Go to item ${i + 1}`}
                                                 className={`h-1.5 rounded-full transition-all duration-300 ${
                                                     i === activeIndex
                                                         ? "w-5 bg-[#6ee7f9]"

@@ -15,26 +15,40 @@ import {
 import React, {useEffect, useRef, useState} from "react";
 import ProjectModal from "./component/projectmodal.jsx";
 
+
+
 const PROJECTS = [
     {
         index: "01",
-        title: "Aether — Realtime Dashboard",
-        description: "A control-room style analytics dashboard streaming live telemetry for a fleet of IoT devices.",
-        tags: ["React", "WebSocket", "D3"],
-        images: [
-            "/projects/aether-1.png",
-            "/projects/aether-2.png",
-            "/projects/aether-3.png",
+        title: "Monclair Infrastructure",
+        description: "A single-page, interactive, and responsive website for a dummy company profile, built using Tailwind and HTML.",
+        tags: ["Tailwind", "HTML"],
+        media: [
+            {type:"video", src:"./monclair/2mon.mp4"},
+            {type:"video", src:"./monclair/3mon.mp4"},
+            {type:"video", src:"./monclair/4mon.mp4"}
         ],
     },
     {
         index: "02",
-        title: "Nexus — Design System",
-        description: "A component library and token pipeline adopted across four product teams.",
-        tags: ["Tailwind", "Storybook"],
-        images: ["/projects/nexus-1.png", "/projects/nexus-2.png"],
+        title: "learning outcomes website",
+        description: "A website for tracking elementary school learning outcomes. This website allows users to monitor student grades, create exams, upload a question bank, and upload e-books.",
+        tags: ["CSS", "React","express","OOP","MYSQL"],
+        media: [
+            { type: "image", src: "/projects/nexus-1.png" },
+            { type: "image", src: "/projects/nexus-2.png" },
+        ],
     },
-    // ...lakukan hal sama untuk Orbit dan Pulse
+    {
+        index: "03",
+        title: "Just-Weather",
+        description: "A website for monitoring temperature, weather, wind direction, and wind speed that connects to IoT devices in real time using MQTT, an ExpressJS for backend, and MySQL as the database",
+        tags: ["Flutter","express","OOP","IOT","MQTT","MYSQL"],
+        media: [
+            { type: "image", src: "/projects/nexus-1.png" },
+            { type: "image", src: "/projects/nexus-2.png" },
+        ],
+    },
 ];
 
 const SKILLS = [
@@ -222,7 +236,14 @@ export default function App() {
             {/* ---------- WORK ---------- */}
             <section id="work" className="relative border-t border-[#232b45] py-24">
                 <div className="mx-auto max-w-6xl px-6">
-                    {/* ...header section tetap sama */}
+                    <div className="mb-14 max-w-xl">
+                        <p className="mb-3 font-mono text-xs uppercase tracking-widest text-[#6ee7f9]">
+                            // Work
+                        </p>
+                        <h2 className="font-display text-3xl font-semibold sm:text-4xl">
+                            Experience Working on Projects.
+                        </h2>
+                        </div>
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                         {PROJECTS.map((project) => (
                             <Card
@@ -232,12 +253,12 @@ export default function App() {
                             />
                         ))}
                     </div>
-                </div>
+                    </div>
             </section>
 
             {/* ---------- CONTACT ---------- */}
             <section id="contact" className="relative border-t border-[#232b45] py-24">
-                <div className="grid-bg absolute inset-0 opacity-40"/>
+            <div className="grid-bg absolute inset-0 opacity-40"/>
                 <div className="relative mx-auto max-w-3xl px-6 text-center">
                     <p className="mb-3 font-mono text-xs uppercase tracking-widest text-[#6ee7f9]">
                         // Contact
