@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "./component/Navbar";
 import Footer from "./component/Footer";
 import Card from "./component/Card";
@@ -54,7 +53,35 @@ const PROJECTS = [
     },
 ];
 
+
 export default function App() {
+    const heroRef = useRef(null);
+    const gridRef = useRef(null);
+
+    useEffect(() => {
+        const hero = heroRef.current;
+        const grid = gridRef.current;
+        if (!hero || !grid) return;
+
+        let raf;
+        const handleMouseMove = (e) => {
+            const rect = hero.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+                const maxOffset = 16;
+                grid.style.transform = `translate(${x * maxOffset}px, ${y * maxOffset}px)`;
+            });
+        };
+
+        hero.addEventListener("mousemove", handleMouseMove);
+        return () => {
+            hero.removeEventListener("mousemove", handleMouseMove);
+            cancelAnimationFrame(raf);
+        };
+    }, []);
     return (
         <div className="min-h-screen bg-[#05070f] text-[#e8eaf6] selection:bg-[#6ee7f9] selection:text-[#05070f]">
             <Navbar />
@@ -62,23 +89,30 @@ export default function App() {
             {/* ---------- HERO ---------- */}
             <section
                 id="home"
+                ref={heroRef}
                 className="relative flex min-h-screen items-center overflow-hidden pt-24"
             >
-                <div className="grid-bg absolute inset-0" />
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#6ee7f9]/70 to-transparent animate-scan" />
-                <div className="pointer-events-none absolute -left-32 top-1/3 h-72 w-72 rounded-full bg-[#a78bfa]/10 blur-[100px]" />
-                <div className="pointer-events-none absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-[#6ee7f9]/10 blur-[110px]" />
+                <div ref={gridRef} className="grid-bg absolute -inset-4 transition-transform duration-300 ease-out"/>
+                <div
+                    className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#6ee7f9]/70 to-transparent animate-scan"/>
+                <div
+                    className="pointer-events-none absolute -left-32 top-1/3 h-72 w-72 rounded-full bg-[#a78bfa]/10 blur-[100px]"/>
+                <div
+                    className="pointer-events-none absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-[#6ee7f9]/10 blur-[110px]"/>
 
-                <div className="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-16 px-6 py-20 md:grid-cols-[1.15fr_0.85fr]">
+                <div
+                    className="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-16 px-6 py-20 md:grid-cols-[1.15fr_0.85fr]">
                     <div>
-                        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#232b45] bg-[#0d1120] px-4 py-1.5 font-mono text-[11px] uppercase tracking-widest text-[#8992b8]">
-                            <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-[#6ee7f9]" />
+                        <div
+                            className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#232b45] bg-[#0d1120] px-4 py-1.5 font-mono text-[11px] uppercase tracking-widest text-[#8992b8]">
+                            <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-[#6ee7f9]"/>
                             Available for new projects
                         </div>
 
                         <h1 className="font-display text-4xl font-semibold leading-[1.1] sm:text-5xl lg:text-6xl">
                             Elena Voss —{" "}
-                            <span className="bg-gradient-to-r from-[#6ee7f9] to-[#a78bfa] bg-clip-text text-transparent">
+                            <span
+                                className="bg-gradient-to-r from-[#6ee7f9] to-[#a78bfa] bg-clip-text text-transparent">
                 Interfaces
               </span>{" "}
                             built like systems.
@@ -107,19 +141,29 @@ export default function App() {
                             </div>
                             <div>
                                 <p className="text-2xl font-semibold text-[#e8eaf6]">12</p>
-                                <p className="mt-1 text-[11px] uppercase tracking-widest text-[#8992b8]">Countries served</p>
+                                <p className="mt-1 text-[11px] uppercase tracking-widest text-[#8992b8]">Countries
+                                    served</p>
                             </div>
                         </div>
                     </div>
 
                     {/* Orbit avatar — signature element */}
                     <div className="relative mx-auto flex h-72 w-72 items-center justify-center sm:h-80 sm:w-80">
-                        <div className="absolute inset-0 animate-orbit-slow rounded-full border border-dashed border-[#232b45]" />
-                        <div className="absolute inset-6 animate-orbit-slow-reverse rounded-full border border-dashed border-[#232b45]" />
-                        <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 rounded-full bg-[#6ee7f9] shadow-[0_0_12px_2px_rgba(110,231,249,0.8)]" />
-                        <span className="absolute bottom-2 right-4 h-1.5 w-1.5 rounded-full bg-[#a78bfa] shadow-[0_0_10px_2px_rgba(167,139,250,0.8)]" />
+                        {/* Orbit luar: ring + dot jadi satu, sama-sama rotate */}
+                        <div className="absolute inset-0 animate-orbit-slow">
+                            <div className="absolute inset-0 rounded-full border border-dashed border-[#232b45]"/>
+                            <span
+                                className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#6ee7f9] shadow-[0_0_12px_2px_rgba(110,231,249,0.8)]"/>
+                        </div>
 
-                        <div className="animate-float flex h-48 w-48 items-center justify-center rounded-full bg-gradient-to-br from-[#141a2e] to-[#0d1120] shadow-[0_0_60px_rgba(110,231,249,0.15)] ring-1 ring-[#232b45] sm:h-56 sm:w-56">
+                        {/* Orbit dalam: arah sebaliknya */}
+                        <div className="absolute inset-6 animate-orbit-slow-reverse">
+                            <div className="absolute inset-0 rounded-full border border-dashed border-[#232b45]"/>
+                            <span
+                                className="absolute right-0 top-1/2 h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-[#a78bfa] shadow-[0_0_10px_2px_rgba(167,139,250,0.8)]"/>
+                        </div>
+                        <div
+                            className="animate-float flex h-48 w-48 items-center justify-center rounded-full bg-gradient-to-br from-[#141a2e] to-[#0d1120] shadow-[0_0_60px_rgba(110,231,249,0.15)] ring-1 ring-[#232b45] sm:h-56 sm:w-56">
                             <span className="font-display text-5xl font-semibold text-[#6ee7f9]">EV</span>
                         </div>
                     </div>
