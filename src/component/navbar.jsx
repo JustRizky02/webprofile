@@ -41,7 +41,7 @@ export default function Navbar() {
             <span className="absolute inline-flex h-full w-full animate-pulse-dot rounded-full bg-[#6ee7f9]" />
           </span>
                     <span>
-            EV<span className="text-[#6ee7f9]">.</span>SYS
+            MRH<span className="text-[#6ee7f9]">.</span>FS
           </span>
                 </a>
 

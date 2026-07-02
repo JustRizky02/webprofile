@@ -1,17 +1,17 @@
 import { Mail, ArrowUp } from "lucide-react";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 const SOCIALS = [
-    { icon: FaGithub, href: "https://github.com/", label: "GitHub" },
-    { icon: FaLinkedin, href: "https://linkedin.com/", label: "LinkedIn" },
-    { icon: FaTwitter, href: "https://twitter.com/", label: "Twitter" },
-    { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
+    { icon: FaGithub, href: "https://github.com/JustRizky02", label: "GitHub" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/in/muhammad-rizky-herdiansyah-a00379310?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app", label: "LinkedIn" },
+    { icon: FaInstagram, href: "https://www.instagram.com/justrizky02?igsh=MXhsY2hyMDJ0eXd3dg==", label: "Instagram" },
+    { icon: Mail, href: "rizky30054@gmail.com", label: "Email" },
 ];
 
 const LINKS = [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
-    { label: "Work", href: "#work" },
     { label: "Skills", href: "#skills" },
+    { label: "Work", href: "#work" },
     { label: "Contact", href: "#contact" },
 ];
 
@@ -33,7 +33,7 @@ function Footer() {
                                 <span className="absolute inline-flex h-full w-full animate-pulse-dot rounded-full bg-[#6ee7f9]" />
                             </span>
 
-                            EV<span className="text-[#6ee7f9]">.</span>SYS
+                            MRH<span className="text-[#6ee7f9]">.</span>FS
                         </div>
 
                         <p className="max-w-sm text-sm leading-relaxed text-[#8992b8]">
@@ -109,7 +109,7 @@ function Footer() {
                 >
 
                     <p>
-                        © {CURRENT_YEAR} Elena Voss — All systems documented
+                        © {2026} Muhammad Rizky Herdiansyah — Build With Love
                     </p>
 
 

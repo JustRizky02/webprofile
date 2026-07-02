@@ -4,11 +4,20 @@ import Card from "./component/Card";
 import Button from "./component/Button";
 import {
     Code2,
-    Cpu,
-    Rocket,
-    LayoutGrid,
+    Smartphone,
+    Flame,
+    Globe,
+    Terminal,
+    Server,
     Database,
-    Palette,
+    Braces,
+    Brain,
+    Cpu,
+    Languages,
+    Component,
+    Users,
+    Zap,
+    Clock,
     Mail,
     MapPin,
 } from "lucide-react";
@@ -51,15 +60,26 @@ const PROJECTS = [
     },
 ];
 
-const SKILLS = [
-    { icon: Code2, title: "Frontend Engineering", description: "React, TypeScript and design systems built to scale across teams.", tags: ["React", "TS", "Tailwind"] },
-    { icon: Cpu, title: "Systems Thinking", description: "Architecting state, data flow and performance budgets before pixels.", tags: ["Perf", "State"] },
-    { icon: LayoutGrid, title: "Interface Design", description: "Prototyping interaction models directly in code, not just static frames.", tags: ["Figma", "Motion"] },
-    { icon: Database, title: "Backend & APIs", description: "Node services, REST/GraphQL contracts and pragmatic data modeling.", tags: ["Node", "GraphQL"] },
-    { icon: Palette, title: "Motion & Detail", description: "Micro-interactions and transitions that make interfaces feel alive.", tags: ["Framer", "CSS"] },
-    { icon: Rocket, title: "Shipping", description: "CI/CD, monitoring and iterating in production with confidence.", tags: ["CI/CD", "DX"] },
+const TECHNICAL_SKILLS = [
+    { icon: Code2, title: "React", description: "Building fast, component-driven interfaces with reusable, scalable architecture.", tags: ["Hooks", "Vite", "SPA"] },
+    { icon: Smartphone, title: "Flutter", description: "Cross-platform mobile apps from a single codebase with native-like performance.", tags: ["Dart", "Mobile", "iOS/Android"] },
+    { icon: Flame, title: "Firebase", description: "Realtime databases, authentication, and hosting for rapid product development.", tags: ["Auth", "Firestore", "Hosting"] },
+    { icon: Globe, title: "HTML", description: "Semantic, accessible markup as the structural foundation of every interface.", tags: ["Semantic", "A11y"] },
+    { icon: Terminal, title: "Python", description: "Scripting, automation, and backend logic with clean, readable code.", tags: ["Scripting", "Automation"] },
+    { icon: Server, title: "Express", description: "Lightweight Node.js backend services and RESTful API routing.", tags: ["Node", "REST API"] },
+    { icon: Database, title: "MySQL", description: "Relational data modeling, queries, and schema design for structured data.", tags: ["SQL", "Relational"] },
+    { icon: Braces, title: "JavaScript", description: "Core language powering interactive, dynamic experiences across the stack.", tags: ["ES6+", "Async"] },
+    { icon: Brain, title: "Machine Learning", description: "Applying models and data pipelines to build intelligent, predictive features.", tags: ["Python", "Data"] },
+    { icon: Cpu, title: "IoT", description: "Connecting embedded devices and sensors to build smart, data-driven systems.", tags: ["Embedded", "Sensors"] },
 ];
 
+const PROFESSIONAL_SKILLS = [
+    { icon: Languages, title: "Fluent English", description: "Comfortable communicating and documenting work for international teams.", tags: ["Communication"] },
+    { icon: Component, title: "OOP", description: "Designing maintainable systems around objects, classes, and clean abstractions.", tags: ["Design Patterns"] },
+    { icon: Users, title: "Leadership", description: "Guiding teams, mentoring engineers, and driving projects to completion.", tags: ["Mentoring", "Ownership"] },
+    { icon: Zap, title: "Fast Learner", description: "Quickly picking up new tools, frameworks, and domains with minimal ramp-up time.", tags: ["Adaptability"] },
+    { icon: Clock, title: "Time Management", description: "Prioritizing tasks effectively to consistently meet deadlines without sacrificing quality.", tags: ["Prioritization"] },
+];
 
 
 export default function App() {
@@ -115,11 +135,11 @@ export default function App() {
                         <div
                             className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#232b45] bg-[#0d1120] px-4 py-1.5 font-mono text-[11px] uppercase tracking-widest text-[#8992b8]">
                             <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-[#6ee7f9]"/>
-                            Available for new projects
+                            Available for new projects and jobs
                         </div>
 
                         <h1 className="font-display text-4xl font-semibold leading-[1.1] sm:text-5xl lg:text-6xl">
-                            Elena Voss —{" "}
+                            MUHAMMAD RIZKY HERDIANSYAH —{" "}
                             <span
                                 className="bg-gradient-to-r from-[#6ee7f9] to-[#a78bfa] bg-clip-text text-transparent">
                 Interfaces
@@ -173,7 +193,7 @@ export default function App() {
                         </div>
                         <div
                             className="animate-float flex h-48 w-48 items-center justify-center rounded-full bg-gradient-to-br from-[#141a2e] to-[#0d1120] shadow-[0_0_60px_rgba(110,231,249,0.15)] ring-1 ring-[#232b45] sm:h-56 sm:w-56">
-                            <span className="font-display text-5xl font-semibold text-[#6ee7f9]">EV</span>
+                            <span className="font-display text-5xl font-semibold text-[#6ee7f9]">MRH</span>
                         </div>
                     </div>
                 </div>
@@ -207,7 +227,7 @@ export default function App() {
                         <div
                             className="flex items-center gap-2 pt-2 font-mono text-xs uppercase tracking-widest text-[#8992b8]">
                             <MapPin size={14} className="text-[#6ee7f9]"/>
-                            Jakarta, Indonesia — Remote friendly
+                            Bandung, West Java, Indonesia — Remote friendly
                         </div>
                     </div>
                 </div>
@@ -225,10 +245,28 @@ export default function App() {
                         </h2>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {SKILLS.map((skill) => (
-                            <Card key={skill.title} {...skill} />
-                        ))}
+                    {/* Technical Skills */}
+                    <div className="mb-10">
+                        <p className="mb-5 font-mono text-xs uppercase tracking-widest text-[#8992b8]">
+                            Technical Skills
+                        </p>
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                            {TECHNICAL_SKILLS.map((skill) => (
+                                <Card key={skill.title} {...skill} />
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Professional Skills */}
+                    <div>
+                        <p className="mb-5 font-mono text-xs uppercase tracking-widest text-[#8992b8]">
+                            Professional Skills
+                        </p>
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                            {PROFESSIONAL_SKILLS.map((skill) => (
+                                <Card key={skill.title} {...skill} />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
@@ -258,7 +296,7 @@ export default function App() {
 
             {/* ---------- CONTACT ---------- */}
             <section id="contact" className="relative border-t border-[#232b45] py-24">
-            <div className="grid-bg absolute inset-0 opacity-40"/>
+                <div className="grid-bg absolute inset-0 opacity-40"/>
                 <div className="relative mx-auto max-w-3xl px-6 text-center">
                     <p className="mb-3 font-mono text-xs uppercase tracking-widest text-[#6ee7f9]">
                         // Contact
@@ -267,14 +305,20 @@ export default function App() {
                         Have a project in mind? Let's build it right.
                     </h2>
                     <p className="mx-auto mt-5 max-w-md text-[#8992b8]">
-                        Open to freelance engagements, collaborations and interesting
-                        technical problems. Usually replies within 24 hours.
+                        Open to, work, freelance engagements, collaborations and
+                        interesting technical problems. Usually replies within 24 hours.
                     </p>
                     <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-                        <Button href="mailto:hello@example.com" variant="primary" icon={false}>
-              <span className="flex items-center gap-2">
-                <Mail size={16}/> hello@example.com
-              </span>
+                        <Button
+                            href="https://mail.google.com/mail/?view=cm&fs=1&to=rizky30054@gmail.com&su=Project%20Inquiry"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            variant="primary"
+                            icon={false}
+                        >
+                            <span className="flex items-center gap-2">
+                                <Mail size={16}/> rizky30054@gmail.com
+                            </span>
                         </Button>
                         <Button href="#home" variant="outline">
                             Back to top
