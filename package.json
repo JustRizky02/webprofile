@@ -3,8 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://justrizky02.github.io/webprofile/",
-
+  "homepage": "https://JustRizky02.github.io/webprofile/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
