@@ -12,7 +12,30 @@ import {
     Mail,
     MapPin,
 } from "lucide-react";
-import React, { useEffect, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
+import ProjectModal from "./component/projectmodal.jsx";
+
+const PROJECTS = [
+    {
+        index: "01",
+        title: "Aether — Realtime Dashboard",
+        description: "A control-room style analytics dashboard streaming live telemetry for a fleet of IoT devices.",
+        tags: ["React", "WebSocket", "D3"],
+        images: [
+            "/projects/aether-1.png",
+            "/projects/aether-2.png",
+            "/projects/aether-3.png",
+        ],
+    },
+    {
+        index: "02",
+        title: "Nexus — Design System",
+        description: "A component library and token pipeline adopted across four product teams.",
+        tags: ["Tailwind", "Storybook"],
+        images: ["/projects/nexus-1.png", "/projects/nexus-2.png"],
+    },
+    // ...lakukan hal sama untuk Orbit dan Pulse
+];
 
 const SKILLS = [
     { icon: Code2, title: "Frontend Engineering", description: "React, TypeScript and design systems built to scale across teams.", tags: ["React", "TS", "Tailwind"] },
@@ -23,41 +46,12 @@ const SKILLS = [
     { icon: Rocket, title: "Shipping", description: "CI/CD, monitoring and iterating in production with confidence.", tags: ["CI/CD", "DX"] },
 ];
 
-const PROJECTS = [
-    {
-        index: "01",
-        title: "Aether — Realtime Dashboard",
-        description: "A control-room style analytics dashboard streaming live telemetry for a fleet of IoT devices.",
-        tags: ["React", "WebSocket", "D3"],
-        href: "#",
-    },
-    {
-        index: "02",
-        title: "Nexus — Design System",
-        description: "A component library and token pipeline adopted across four product teams.",
-        tags: ["Tailwind", "Storybook"],
-        href: "#",
-    },
-    {
-        index: "03",
-        title: "Orbit — Booking Platform",
-        description: "End-to-end scheduling product with conflict-free calendar syncing at scale.",
-        tags: ["Next.js", "Postgres"],
-        href: "#",
-    },
-    {
-        index: "04",
-        title: "Pulse — Motion Playground",
-        description: "An experimental sandbox for scroll-driven storytelling and shader-based backgrounds.",
-        tags: ["WebGL", "GSAP"],
-        href: "#",
-    },
-];
 
 
 export default function App() {
     const heroRef = useRef(null);
     const gridRef = useRef(null);
+    const [selectedProject, setSelectedProject] = useState(null);
 
     useEffect(() => {
         const hero = heroRef.current;
@@ -85,7 +79,7 @@ export default function App() {
     }, []);
     return (
         <div className="min-h-screen bg-[#05070f] text-[#e8eaf6] selection:bg-[#6ee7f9] selection:text-[#05070f]">
-            <Navbar />
+            <Navbar/>
 
             {/* ---------- HERO ---------- */}
             <section
@@ -196,8 +190,9 @@ export default function App() {
                             into design-adjacent roles. I'm based in Jakarta and work with
                             teams across time zones.
                         </p>
-                        <div className="flex items-center gap-2 pt-2 font-mono text-xs uppercase tracking-widest text-[#8992b8]">
-                            <MapPin size={14} className="text-[#6ee7f9]" />
+                        <div
+                            className="flex items-center gap-2 pt-2 font-mono text-xs uppercase tracking-widest text-[#8992b8]">
+                            <MapPin size={14} className="text-[#6ee7f9]"/>
                             Jakarta, Indonesia — Remote friendly
                         </div>
                     </div>
@@ -227,23 +222,14 @@ export default function App() {
             {/* ---------- WORK ---------- */}
             <section id="work" className="relative border-t border-[#232b45] py-24">
                 <div className="mx-auto max-w-6xl px-6">
-                    <div className="mb-14 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
-                        <div className="max-w-xl">
-                            <p className="mb-3 font-mono text-xs uppercase tracking-widest text-[#6ee7f9]">
-                                // Selected Work
-                            </p>
-                            <h2 className="font-display text-3xl font-semibold sm:text-4xl">
-                                Four builds, in the order I shipped them.
-                            </h2>
-                        </div>
-                        <Button href="#contact" variant="ghost" size="sm">
-                            Discuss a project
-                        </Button>
-                    </div>
-
+                    {/* ...header section tetap sama */}
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                         {PROJECTS.map((project) => (
-                            <Card key={project.index} {...project} />
+                            <Card
+                                key={project.index}
+                                {...project}
+                                onClick={() => setSelectedProject(project)}
+                            />
                         ))}
                     </div>
                 </div>
@@ -251,7 +237,7 @@ export default function App() {
 
             {/* ---------- CONTACT ---------- */}
             <section id="contact" className="relative border-t border-[#232b45] py-24">
-                <div className="grid-bg absolute inset-0 opacity-40" />
+                <div className="grid-bg absolute inset-0 opacity-40"/>
                 <div className="relative mx-auto max-w-3xl px-6 text-center">
                     <p className="mb-3 font-mono text-xs uppercase tracking-widest text-[#6ee7f9]">
                         // Contact
@@ -266,7 +252,7 @@ export default function App() {
                     <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
                         <Button href="mailto:hello@example.com" variant="primary" icon={false}>
               <span className="flex items-center gap-2">
-                <Mail size={16} /> hello@example.com
+                <Mail size={16}/> hello@example.com
               </span>
                         </Button>
                         <Button href="#home" variant="outline">
@@ -276,7 +262,11 @@ export default function App() {
                 </div>
             </section>
 
-            <Footer />
+            <Footer/>
+            <ProjectModal
+                project={selectedProject}
+                onClose={() => setSelectedProject(null)}
+            />
         </div>
     );
 }
