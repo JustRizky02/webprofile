@@ -74,32 +74,30 @@ export default function App() {
                         </h1>
 
                         <p className="mt-6 max-w-lg text-base leading-relaxed text-[#8992b8]">
-                            I'm a frontend engineer and creative technologist designing and
-                            building products that feel precise, fast, and a little bit
-                            alive. Currently crafting interfaces at the intersection of
-                            design and engineering.
+                            I'm a Fullstack Developer and creative technologist passionate about
+                            building products across web, mobile, and IoT that feel precise,
+                            fast, and a little bit alive.
                         </p>
 
                         <div className="mt-9 flex flex-wrap items-center gap-4">
                             <Button href="#work" variant="primary">View Work</Button>
                             <Button href="#contact" variant="outline">Get in Touch</Button>
                         </div>
-
-                        <div className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-[#232b45] pt-6 font-mono">
-                            <div>
-                                <p className="text-2xl font-semibold text-[#e8eaf6]">6+</p>
-                                <p className="mt-1 text-[11px] uppercase tracking-widest text-[#8992b8]">Years exp.</p>
-                            </div>
-                            <div>
-                                <p className="text-2xl font-semibold text-[#e8eaf6]">40+</p>
-                                <p className="mt-1 text-[11px] uppercase tracking-widest text-[#8992b8]">Projects</p>
-                            </div>
-                            <div>
-                                <p className="text-2xl font-semibold text-[#e8eaf6]">12</p>
-                                <p className="mt-1 text-[11px] uppercase tracking-widest text-[#8992b8]">Countries
-                                    served</p>
-                            </div>
-                        </div>
+                        {/*<div className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-[#232b45] pt-6 font-mono">*/}
+                        {/*    <div>*/}
+                        {/*        <p className="text-2xl font-semibold text-[#e8eaf6]">6+</p>*/}
+                        {/*        <p className="mt-1 text-[11px] uppercase tracking-widest text-[#8992b8]">Years exp.</p>*/}
+                        {/*    </div>*/}
+                        {/*    <div>*/}
+                        {/*        <p className="text-2xl font-semibold text-[#e8eaf6]">40+</p>*/}
+                        {/*        <p className="mt-1 text-[11px] uppercase tracking-widest text-[#8992b8]">Projects</p>*/}
+                        {/*    </div>*/}
+                        {/*    <div>*/}
+                        {/*        <p className="text-2xl font-semibold text-[#e8eaf6]">12</p>*/}
+                        {/*        <p className="mt-1 text-[11px] uppercase tracking-widest text-[#8992b8]">Countries*/}
+                        {/*            served</p>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                     </div>
 
                     {/* Orbit avatar — signature element */}
