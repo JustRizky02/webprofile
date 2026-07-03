@@ -2,89 +2,11 @@ import Navbar from "./component/Navbar";
 import Footer from "./component/Footer";
 import Card from "./component/Card";
 import Button from "./component/Button";
-import {
-    Code2,
-    Smartphone,
-    Flame,
-    Globe,
-    Terminal,
-    Server,
-    Database,
-    Braces,
-    Brain,
-    Cpu,
-    Languages,
-    Component,
-    Users,
-    Zap,
-    Clock,
-    Mail,
-    MapPin,
-} from "lucide-react";
-import React, {useEffect, useRef, useState} from "react";
+import { Mail, MapPin } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
 import ProjectModal from "./component/projectmodal.jsx";
-
-
-
-const PROJECTS = [
-    {
-        index: "01",
-        title: "Monclair Infrastructure",
-        description: "A single-page, interactive, and responsive website for a dummy company profile, built using Tailwind and HTML.",
-        tags: ["Tailwind", "HTML"],
-        media: [
-            {type:"video", src:"./monclair/2mon.mp4"},
-            {type:"video", src:"./monclair/3mon.mp4"},
-            {type:"video", src:"./monclair/4mon.mp4"}
-        ],
-    },
-    {
-        index: "02",
-        title: "learning outcomes website",
-        description: "A website for tracking elementary school learning outcomes. This website allows users to monitor student grades, create exams, upload a question bank, and upload e-books.",
-        tags: ["CSS", "React","express","OOP","MYSQL"],
-        media: [
-            { type: "image", src: "./Capaian/capai1.png" },
-            { type: "image", src: "./Capaian/capai2.png" },
-            { type: "image", src: "./Capaian/capai3.png" },
-            { type: "image", src: "./Capaian/capai4.png" }
-        ],
-    },
-    {
-        index: "03",
-        title: "Just-Weather",
-        description: "A website for monitoring temperature, weather, wind direction, and wind speed that connects to IoT devices in real time using MQTT, an ExpressJS for backend, and MySQL as the database",
-        tags: ["Flutter","express","OOP","IOT","MQTT","MYSQL"],
-        media: [
-            { type: "image", src: "./weather/img.png" },
-            { type: "image", src: "./weather/img_1.png" },
-            { type: "image", src: "./weather/img_2.png" },
-            { type: "video", src: "./weather/video_iot.mp4" }
-        ],
-    },
-];
-
-const TECHNICAL_SKILLS = [
-    { icon: Code2, title: "React", description: "Building fast, component-driven interfaces with reusable, scalable architecture.", tags: ["Hooks", "Vite", "SPA"] },
-    { icon: Smartphone, title: "Flutter", description: "Cross-platform mobile apps from a single codebase with native-like performance.", tags: ["Dart", "Mobile", "iOS/Android"] },
-    { icon: Flame, title: "Firebase", description: "Realtime databases, authentication, and hosting for rapid product development.", tags: ["Auth", "Firestore", "Hosting"] },
-    { icon: Globe, title: "HTML", description: "Semantic, accessible markup as the structural foundation of every interface.", tags: ["Semantic", "A11y"] },
-    { icon: Terminal, title: "Python", description: "Scripting, automation, and backend logic with clean, readable code.", tags: ["Scripting", "Automation"] },
-    { icon: Server, title: "Express", description: "Lightweight Node.js backend services and RESTful API routing.", tags: ["Node", "REST API"] },
-    { icon: Database, title: "MySQL", description: "Relational data modeling, queries, and schema design for structured data.", tags: ["SQL", "Relational"] },
-    { icon: Braces, title: "JavaScript", description: "Core language powering interactive, dynamic experiences across the stack.", tags: ["ES6+", "Async"] },
-    { icon: Brain, title: "Machine Learning", description: "Applying models and data pipelines to build intelligent, predictive features.", tags: ["Python", "Data"] },
-    { icon: Cpu, title: "IoT", description: "Connecting embedded devices and sensors to build smart, data-driven systems.", tags: ["Embedded", "Sensors"] },
-];
-
-const PROFESSIONAL_SKILLS = [
-    { icon: Languages, title: "Fluent English", description: "Comfortable communicating and documenting work for international teams.", tags: ["Communication"] },
-    { icon: Component, title: "OOP", description: "Designing maintainable systems around objects, classes, and clean abstractions.", tags: ["Design Patterns"] },
-    { icon: Users, title: "Leadership", description: "Guiding teams, mentoring engineers, and driving projects to completion.", tags: ["Mentoring", "Ownership"] },
-    { icon: Zap, title: "Fast Learner", description: "Quickly picking up new tools, frameworks, and domains with minimal ramp-up time.", tags: ["Adaptability"] },
-    { icon: Clock, title: "Time Management", description: "Prioritizing tasks effectively to consistently meet deadlines without sacrificing quality.", tags: ["Prioritization"] },
-];
-
+import { PROJECTS } from "./data/projects";
+import { TECHNICAL_SKILLS, PROFESSIONAL_SKILLS } from "./data/skills";
 
 export default function App() {
     const heroRef = useRef(null);
@@ -205,32 +127,65 @@ export default function App() {
 
             {/* ---------- ABOUT ---------- */}
             <section id="about" className="relative border-t border-[#232b45] py-24">
-                <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 md:grid-cols-[0.4fr_0.6fr]">
-                    <div>
-                        <p className="mb-3 font-mono text-xs uppercase tracking-widest text-[#6ee7f9]">
+                <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 md:grid-cols-[0.4fr_0.6fr]">
+
+                    {/* Kiri: foto + shape animasi */}
+                    <div className="relative mx-auto flex h-[26rem] w-72 items-end justify-center sm:h-[30rem] sm:w-80">
+                        {/* Blob cahaya bergerak pelan di belakang */}
+                        <div className="animate-blob pointer-events-none absolute -left-6 top-6 h-40 w-40 rounded-full bg-[#a78bfa]/20 blur-3xl" />
+                        <div
+                            className="animate-blob pointer-events-none absolute -bottom-4 -right-4 h-44 w-44 rounded-full bg-[#6ee7f9]/20 blur-3xl"
+                            style={{ animationDelay: "3s" }}
+                        />
+
+                        {/* Ring dashed berputar */}
+                        <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 animate-orbit-slow sm:h-80 sm:w-80">
+                            <div className="absolute inset-0 rounded-full border border-dashed border-[#232b45]" />
+                            <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#6ee7f9] shadow-[0_0_12px_2px_rgba(110,231,249,0.8)]" />
+                        </div>
+
+                        {/* Ring dashed kedua, lebih kecil, arah sebaliknya */}
+                        <div className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 animate-orbit-slow-reverse sm:h-64 sm:w-64">
+                            <div className="absolute inset-0 rounded-full border border-dashed border-[#232b45]/60" />
+                            <span className="absolute right-0 top-1/2 h-1.5 w-1.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-[#a78bfa] shadow-[0_0_10px_2px_rgba(167,139,250,0.8)]" />
+                        </div>
+
+                        {/* Foto — transparan, tanpa frame/background, cuma float */}
+                        <img
+                            src="./bgputih.png"
+                            alt="Muhammad Rizky Herdiansyah"
+                            className="animate-float relative z-10 h-full w-auto object-contain"
+                        />
+                    </div>
+
+                    {/* Kanan: deskripsi diri */}
+                    <div className="space-y-5 text-[#8992b8]">
+                        <p className="font-mono text-xs uppercase tracking-widest text-[#6ee7f9]">
                             // About
                         </p>
-                        <h2 className="font-display text-3xl font-semibold sm:text-4xl">
+                        <h2 className="font-display text-3xl font-semibold text-[#e8eaf6] sm:text-4xl">
                             Precision on the surface, structure underneath.
                         </h2>
-                    </div>
-                    <div className="space-y-5 text-[#8992b8]">
                         <p className="leading-relaxed">
-                            I started out reverse-engineering interfaces I admired, then
-                            spent the last six years building product for startups and
-                            scale-ups — from early-stage dashboards to design systems used
-                            by teams of fifty. I care equally about the pixel and the
-                            architecture behind it.
+                            I'm a Computer Science graduate from Bandung National Institute of
+                            Technology, graduating in February 2026 with a GPA of 3.53. I have a
+                            strong interest in full-stack development, mobile development, and
+                            IoT engineering — backed by fluent English communication,
+                            leadership, and a fast-learning, highly adaptable mindset that lets
+                            me pick up new tools and domains quickly.
                         </p>
                         <p className="leading-relaxed">
-                            These days I split my time between hands-on engineering,
-                            interface prototyping, and mentoring engineers who are moving
-                            into design-adjacent roles. I'm based in Jakarta and work with
-                            teams across time zones.
+                            I began my professional journey with an internship at PT.
+                            Dirgantara Indonesia as a Security Engineer on the Purple Team,
+                            from July to September 2023. That same September, I took part in a
+                            student exchange program at UCSI Malaysia organized by my
+                            university, and later that year served as part of the graduation
+                            protocol team. I then went on to become a laboratory assistant for
+                            IoT practicums, first from September 2024 to January 2025, and
+                            again from October 2025 to January 2026.
                         </p>
-                        <div
-                            className="flex items-center gap-2 pt-2 font-mono text-xs uppercase tracking-widest text-[#8992b8]">
-                            <MapPin size={14} className="text-[#6ee7f9]"/>
+                        <div className="flex items-center gap-2 pt-2 font-mono text-xs uppercase tracking-widest text-[#8992b8]">
+                            <MapPin size={14} className="text-[#6ee7f9]" />
                             Bandung, West Java, Indonesia — Remote friendly
                         </div>
                     </div>
@@ -285,7 +240,7 @@ export default function App() {
                         <h2 className="font-display text-3xl font-semibold sm:text-4xl">
                             Experience Working on Projects.
                         </h2>
-                        </div>
+                    </div>
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                         {PROJECTS.map((project) => (
                             <Card
@@ -295,7 +250,7 @@ export default function App() {
                             />
                         ))}
                     </div>
-                    </div>
+                </div>
             </section>
 
             {/* ---------- CONTACT ---------- */}
