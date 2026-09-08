@@ -61,7 +61,7 @@ export default function ProjectModal({ project, onClose }) {
 
             <div
                 onClick={(e) => e.stopPropagation()}
-                className="relative z-10 grid w-full max-w-5xl max-h-[85vh] grid-cols-1 overflow-x-hidden overflow-y-auto rounded-2xl border border-[#232b45] bg-[#0d1120] shadow-[0_0_60px_rgba(110,231,249,0.12)] animate-modal-in md:grid-cols-2"
+                className="relative z-10 grid w-full max-w-5xl min-h-[500px] max-h-[85vh] grid-cols-1 overflow-x-hidden overflow-y-auto rounded-2xl border border-[#232b45] bg-[#0d1120] shadow-[0_0_60px_rgba(110,231,249,0.12)] animate-modal-in md:grid-cols-2 md:min-h-[560px]"
             >
                 <button
                     onClick={onClose}
@@ -72,7 +72,7 @@ export default function ProjectModal({ project, onClose }) {
                 </button>
 
                 {/* kiri: carousel video/gambar */}
-                <div className="relative h-64 overflow-hidden bg-[#141a2e] md:h-full">
+                <div className="relative h-80 overflow-hidden bg-[#141a2e] md:h-full">
                     {media.length > 0 ? (
                         <>
                             <div
