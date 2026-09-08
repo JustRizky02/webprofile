@@ -34,4 +34,15 @@ export const PROJECTS = [
             { type: "video", src: "./weather/video_iot.mp4" },
         ],
     },
+    {
+        index: "04",
+        title: "JobTracker",
+        description: "A website for making a CV and tracking job applications, allowing users to add, edit, and delete job applications. It uses Next.js for the frontend, Supabase for the backend, and PostgreSQL as the database.",
+        tags: ["Typescript", "NextJs", "OOP", "Tailwind", "Supabase", "Prisma","PostgreSQL","Supabase Auth"],
+        media: [
+            { type: "video", src: "./jobtracker/1.mov" },
+            { type: "video", src: "./jobtracker/2.mov" },
+            
+        ],
+    },
 ];

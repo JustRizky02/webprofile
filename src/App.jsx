@@ -207,9 +207,31 @@ export default function App() {
                         <p className="mb-5 font-mono text-xs uppercase tracking-widest text-[#8992b8]">
                             Technical Skills
                         </p>
-                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                            {TECHNICAL_SKILLS.map((skill) => (
-                                <Card key={skill.title} {...skill} />
+                        <div className="grid grid-cols-1 gap-x-10 sm:grid-cols-2">
+                            {TECHNICAL_SKILLS.map(({ icon: Icon, title, description, tags }) => (
+                                <div
+                                    key={title}
+                                    className="group flex gap-4 border-b border-[#232b45] py-5 first:pt-0 sm:nth-[2]:pt-0"
+                                >
+                                    <div className="flex h-9 w-9 shrink-0 items-center justify-center text-[#6ee7f9]">
+                                        <Icon size={21} strokeWidth={1.75} />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <h3 className="font-display text-base font-semibold text-[#e8eaf6] transition-colors group-hover:text-[#6ee7f9]">
+                                            {title}
+                                        </h3>
+                                        <p className="mt-1 text-sm leading-relaxed text-[#8992b8]">
+                                            {description}
+                                        </p>
+                                        <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
+                                            {tags.map((tag) => (
+                                                <span key={tag} className="font-mono text-[10px] uppercase tracking-wider text-[#8992b8]/70">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
                             ))}
                         </div>
                     </div>
@@ -219,9 +241,31 @@ export default function App() {
                         <p className="mb-5 font-mono text-xs uppercase tracking-widest text-[#8992b8]">
                             Professional Skills
                         </p>
-                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                            {PROFESSIONAL_SKILLS.map((skill) => (
-                                <Card key={skill.title} {...skill} />
+                        <div className="grid grid-cols-1 gap-x-10 sm:grid-cols-2">
+                            {PROFESSIONAL_SKILLS.map(({ icon: Icon, title, description, tags }) => (
+                                <div
+                                    key={title}
+                                    className="group flex gap-4 border-b border-[#232b45] py-5 first:pt-0 sm:nth-[2]:pt-0"
+                                >
+                                    <div className="flex h-9 w-9 shrink-0 items-center justify-center text-[#6ee7f9]">
+                                        <Icon size={21} strokeWidth={1.75} />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <h3 className="font-display text-base font-semibold text-[#e8eaf6] transition-colors group-hover:text-[#6ee7f9]">
+                                            {title}
+                                        </h3>
+                                        <p className="mt-1 text-sm leading-relaxed text-[#8992b8]">
+                                            {description}
+                                        </p>
+                                        <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
+                                            {tags.map((tag) => (
+                                                <span key={tag} className="font-mono text-[10px] uppercase tracking-wider text-[#8992b8]/70">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
                             ))}
                         </div>
                     </div>

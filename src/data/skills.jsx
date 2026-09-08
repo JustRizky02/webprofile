@@ -18,12 +18,15 @@ import {
 
 export const TECHNICAL_SKILLS = [
     { icon: Code2, title: "React", description: "Building fast, component-driven interfaces with reusable, scalable architecture.", tags: ["Hooks", "Vite", "SPA"] },
+    { icon: Component, title: "Next.js", description: "Building production-ready React applications with routing, rendering, and full-stack features.", tags: ["React", "SSR", "Routing"] },
     { icon: Smartphone, title: "Flutter", description: "Cross-platform mobile apps from a single codebase with native-like performance.", tags: ["Dart", "Mobile", "iOS/Android"] },
     { icon: Flame, title: "Firebase", description: "Realtime databases, authentication, and hosting for rapid product development.", tags: ["Auth", "Firestore", "Hosting"] },
+    { icon: Database, title: "Supabase", description: "Open-source backend services with PostgreSQL, authentication, storage, and realtime features.", tags: ["Auth", "Realtime", "Storage"] },
     { icon: Globe, title: "HTML", description: "Semantic, accessible markup as the structural foundation of every interface.", tags: ["Semantic", "A11y"] },
     { icon: Terminal, title: "Python", description: "Scripting, automation, and backend logic with clean, readable code.", tags: ["Scripting", "Automation"] },
     { icon: Server, title: "Express", description: "Lightweight Node.js backend services and RESTful API routing.", tags: ["Node", "REST API"] },
     { icon: Database, title: "MySQL", description: "Relational data modeling, queries, and schema design for structured data.", tags: ["SQL", "Relational"] },
+    { icon: Database, title: "PostgreSQL", description: "Advanced relational database design, queries, and reliable data management.", tags: ["SQL", "Relational", "Database"] },
     { icon: Braces, title: "JavaScript", description: "Core language powering interactive, dynamic experiences across the stack.", tags: ["ES6+", "Async"] },
     { icon: Brain, title: "Machine Learning", description: "Applying models and data pipelines to build intelligent, predictive features.", tags: ["Python", "Data"] },
     { icon: Cpu, title: "IoT", description: "Connecting embedded devices and sensors to build smart, data-driven systems.", tags: ["Embedded", "Sensors"] },
