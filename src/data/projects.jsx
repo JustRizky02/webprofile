@@ -12,18 +12,6 @@ export const PROJECTS = [
     },
     {
         index: "02",
-        title: "learning outcomes website",
-        description: "A website for tracking elementary school learning outcomes. This website allows users to monitor student grades, create exams, upload a question bank, and upload e-books.",
-        tags: ["CSS", "React", "express", "OOP", "MYSQL"],
-        media: [
-            { type: "image", src: "./Capaian/capai1.png" },
-            { type: "image", src: "./Capaian/capai2.png" },
-            { type: "image", src: "./Capaian/capai3.png" },
-            { type: "image", src: "./Capaian/capai4.png" },
-        ],
-    },
-    {
-        index: "03",
         title: "Just-Weather",
         description: "A website for monitoring temperature, weather, wind direction, and wind speed that connects to IoT devices in real time using MQTT, an ExpressJS for backend, and MySQL as the database",
         tags: ["Flutter", "express", "OOP", "IOT", "MQTT", "MYSQL"],
@@ -35,7 +23,31 @@ export const PROJECTS = [
         ],
     },
     {
+        index: "03",
+        title: "Academic Assessment and Monitoring System (PKM)",
+        description: "A school exam management platform for teachers to create, schedule, and grade quizzes, and for students to take exams with a live countdown timer and auto-submit on timeout. Built with role-based access control (admin/teacher/student), scheduled exam windows, and a layered backend architecture (routes → validation → ownership checks → repository).",
+        tags: ["React", "Express", "PostgreSQL", "JWT Auth", "RESTfulAPI", "Role-Based Access Control (RBAC)", "Cloudinary"],
+        media: [
+            { type: "video", "src": "./Capaian/1.mp4" },
+            { type: "video", "src": "./Capaian/2.mp4" },
+            { type: "video", "src": "./Capaian/3.mp4" },
+            { type: "video", "src": "./Capaian/4.mp4" },
+            { type: "video", "src": "./Capaian/5.mp4" },
+
+        ]
+    },
+    {
         index: "04",
+        title: "Staycationer",
+        description: "Staycationer is a full-stack villa reservation platform. Users can search and filter villas, then make a reservation, while admins get an analytics dashboard and a full CRUD panel to manage villas, reservations, and user roles. Built with React, Tailwind CSS, and Firebase.",
+        tags: ["React", "Tailwind CSS", "Firebase", "CRUD", "Role-Based Access", "Responsive Design"],
+        media: [
+            { type: "video", "src": "./villa/1.mp4" },
+            { type: "video", "src": "./villa/2.mp4" }
+        ]
+    },
+    {
+        index: "05",
         title: "JobTracker",
         description: "A website for making a CV and tracking job applications, allowing users to add, edit, and delete job applications. It uses Next.js for the frontend, Supabase for the backend, and PostgreSQL as the database.",
         tags: ["Typescript", "NextJs", "OOP", "Tailwind", "Supabase", "Prisma","PostgreSQL","Supabase Auth"],

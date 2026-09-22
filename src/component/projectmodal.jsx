@@ -1,24 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Maximize2, Minimize2 } from "lucide-react";
 
 export default function ProjectModal({ project, onClose }) {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [isFullscreen, setIsFullscreen] = useState(false);
     const media = project?.media ?? [];
     const videoRefs = useRef([]);
 
-    // Reset ke slide pertama tiap kali project berganti
+    // Reset ke slide pertama & keluar dari fullscreen tiap kali project berganti
     useEffect(() => {
         setActiveIndex(0);
+        setIsFullscreen(false);
     }, [project]);
-
-    // Auto-slide, hanya jalan kalau media lebih dari satu
-    useEffect(() => {
-        if (media.length <= 1) return;
-        const timer = setInterval(() => {
-            setActiveIndex((i) => (i + 1) % media.length);
-        }, 6000);
-        return () => clearInterval(timer);
-    }, [media.length]);
 
     // Play hanya video yang aktif, pause sisanya (gambar tidak butuh play/pause)
     useEffect(() => {
@@ -40,7 +33,12 @@ export default function ProjectModal({ project, onClose }) {
     useEffect(() => {
         if (!project) return;
         const handleKey = (e) => {
-            if (e.key === "Escape") onClose();
+            if (e.key !== "Escape") return;
+            setIsFullscreen((fs) => {
+                if (fs) return false;
+                onClose();
+                return fs;
+            });
         };
         document.addEventListener("keydown", handleKey);
         document.body.style.overflow = "hidden";
@@ -72,7 +70,13 @@ export default function ProjectModal({ project, onClose }) {
                 </button>
 
                 {/* kiri: carousel video/gambar */}
-                <div className="relative h-80 overflow-hidden bg-[#141a2e] md:h-full">
+                <div
+                    className={
+                        isFullscreen
+                            ? "fixed inset-0 z-[60] overflow-hidden bg-[#05070f]"
+                            : "relative h-80 overflow-hidden bg-[#141a2e] md:h-full"
+                    }
+                >
                     {media.length > 0 ? (
                         <>
                             <div
@@ -85,7 +89,7 @@ export default function ProjectModal({ project, onClose }) {
                                             key={item.src + i}
                                             ref={(el) => (videoRefs.current[i] = el)}
                                             src={item.src}
-                                            className="h-full w-full flex-shrink-0 object-cover"
+                                            className="h-full w-full flex-shrink-0 bg-[#0a0d18] object-contain"
                                             autoPlay
                                             loop
                                             muted
@@ -97,11 +101,19 @@ export default function ProjectModal({ project, onClose }) {
                                             key={item.src + i}
                                             src={item.src}
                                             alt={item.alt ?? `${project.title} preview ${i + 1}`}
-                                            className="h-full w-full flex-shrink-0 object-cover"
+                                            className="h-full w-full flex-shrink-0 bg-[#0a0d18] object-contain"
                                         />
                                     )
                                 )}
                             </div>
+
+                            <button
+                                onClick={() => setIsFullscreen((v) => !v)}
+                                className="absolute left-3 top-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-[#05070f]/60 text-[#e8eaf6] transition-colors hover:bg-[#05070f]/90"
+                                aria-label={isFullscreen ? "Exit fullscreen" : "View fullscreen"}
+                            >
+                                {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+                            </button>
 
                             {media.length > 1 && (
                                 <>
